@@ -1,6 +1,6 @@
 {
-  "name": "hal-4-angular",
-  "version": "6.0.0",
+  "name": "angular4-hal",
+  "version": "6.0.1",
   "description": "This Angular module offers a HAL/JSON http-client to easily interact with a Spring Data Rest API or any API that implements the Spring Data Rest resource model",
   "author": "Masvis S.r.l.",
   "readme": "README.md",
@@ -20,16 +20,14 @@
     "HAL",
     "hypermedia",
     "REST",
-    "Angular 4",
-    "Angular 5",
-    "Angular 6"
+    "Angular"
   ],
   "issues": {
-    "url": "https://github.com//mpbalmeida/hal-4-angular/issues"
+    "url": "https://github.com/sante85/angular4-hal/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com//mpbalmeida/hal-4-angular.git"
+    "url": "https://github.com/sante85/angular4-hal.git"
   },
   "devDependencies": {
     "@angular/compiler": "~6.0.5",
