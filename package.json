@@ -1,6 +1,6 @@
 {
   "name": "hal-4-angular",
-  "version": "6.0.2",
+  "version": "6.0.1",
   "description": "This Angular module offers a HAL/JSON http-client to easily interact with a Spring Data Rest API or any API that implements the Spring Data Rest resource model",
   "author": "Masvis S.r.l.",
   "readme": "README.md",
@@ -26,37 +26,37 @@
     "Angular"
   ],
   "issues": {
-    "url": "https://github.com/mpbalmeida/hal-4-angular/issues"
+    "url": "https://github.com/sante85/angular4-hal/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mpbalmeida/hal-4-angular.git"
+    "url": "https://github.com/sante85/angular4-hal.git"
   },
   "devDependencies": {
-    "@angular/compiler": "^6.0.9",
-    "@angular/compiler-cli": "^6.0.9",
-    "@angular/platform-server": "^6.0.9",
+    "@angular/compiler": "~6.0.5",
+    "@angular/compiler-cli": "~6.0.5",
+    "@angular/platform-server": "~6.0.5",
     "@types/mocha": "^2.2.43",
-    "@types/node": "9.3.0",
     "chai": "^4.1.2",
-    "coveralls": "2.13.1",
-    "fetch-mock": "5.11.0",
-    "growl": "1.10.5",
-    "hoek": "4.2.1",
-    "jest": "20.0.4",
     "mocha": "^3.5.3",
     "nconf": "^0.8.4",
     "optimist": "^0.6.1",
-    "rimraf": "^2.6.2",
     "ts-node": "^3.3.0",
-    "tslint": "^5.11.0",
-    "tslint-ionic-rules": "0.0.17",
-    "typescript": "~2.7.2"
+    "rimraf": "^2.6.2",
+    "tslint": "^5.10.0",
+    "tslint-ionic-rules": "*",
+    "@types/node": "9.3.0",
+    "typescript": "~2.7.2",
+    "coveralls": "2.13.1",
+    "fetch-mock": "5.11.0",
+    "jest": "20.0.4",
+    "hoek": "4.2.1",
+    "growl": "1.10.5"
   },
   "dependencies": {
-    "@angular/common": "^6.0.9",
-    "@angular/core": "^6.0.9",
-    "rxjs": "^6.2.2",
+    "@angular/common": "~6.0.5",
+    "@angular/core": "~6.0.5",
+    "rxjs": "~6.2.1",
     "zone.js": "^0.8.18"
   },
   "engines": {
