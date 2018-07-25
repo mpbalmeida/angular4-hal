@@ -10,7 +10,7 @@ defaults: &defaults
     - image: circleci/node:8.11.3
 
 jobs:
-  test:
+  build:
     <<: *defaults  
     steps:
       - checkout
@@ -18,8 +18,8 @@ jobs:
           keys: v1-dependencies-{{ checksum "package.json" }}
       - run: npm install
       - run:
-          name: Run tests
-          command: npm test
+          name: Run build
+          command: npm run build
       - save_cache:
           paths:
             - node_modules
@@ -43,10 +43,13 @@ workflows:
   version: 2
   test-deploy:
     jobs:
-      - test
+      - build:
+          filters:
+            tags:
+              only: /^v.*/
       - deploy:
           requires:
-            - test
+            - build
           filters:
             tags:
               only: /^v.*/
