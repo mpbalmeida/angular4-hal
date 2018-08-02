@@ -60,7 +60,15 @@ export class ResourceHelper {
                 } else if (Array.isArray(resource[key])) {
                     let array: any[] = resource[key];
                     if (array) {
-                        array.forEach((element) => this.resolveRelations(element));
+                        result[key] = new Array();
+                        array.forEach((element) => {
+                            if (isPrimitive(element)) {
+                                result[key].push(element);
+                            }
+                            else {
+                                result[key].push(this.resolveRelations(element));
+                            }
+                        });
                     }
                 } else {
                     result[key] = resource[key];
@@ -77,7 +85,7 @@ export class ResourceHelper {
     }
 
     static getClassName(obj: any): string {
-        var funcNameRegex = /function (.{1,})\(/;
+        var funcNameRegex = /function (.+?)\(/;
         var results = (funcNameRegex).exec(obj.constructor.toString());
         return (results && results.length > 1) ? results[1] : '';
     }
