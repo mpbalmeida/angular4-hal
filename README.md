@@ -9,7 +9,7 @@ This module needs Angular version 4.3+ since it uses the new HttpClientModule in
 
 ## Installation
 ```
-npm install hal-4-angular --save
+npm i hal-4-angular
 ```
 ## Configuration
 
@@ -22,11 +22,13 @@ ExternalConfigurationService allows you to load configurations in a generic way 
 In simple case proxy and root uri's are a simple string.
 
 ```typescript
-import {Injectable} from "@angular/core";
-import {ExternalConfigurationHandlerInterface, ExternalConfiguration} from "hal-4-angular";
-import {HttpClient} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {ExternalConfigurationHandlerInterface, ExternalConfiguration} from 'hal-4-angular';
+import {HttpClient} from '@angular/common/http';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ExternalConfigurationService implements ExternalConfigurationHandlerInterface {
 
   getProxyUri(): string {
@@ -70,9 +72,7 @@ import {ExternalConfigurationService} from './ExternalConfigurationService'
     BrowserModule,
     AngularHalModule.forRoot()
   ],
-  providers: [
-    {provide: 'ExternalConfigurationService', useClass: ExternalConfigurationService}
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
