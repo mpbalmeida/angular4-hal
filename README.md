@@ -31,6 +31,11 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ExternalConfigurationService implements ExternalConfigurationHandlerInterface {
 
+  deserialize() {
+  }
+  serialize() {
+  }
+
   getProxyUri(): string {
     return 'http://proxy.url/api/';
   }
