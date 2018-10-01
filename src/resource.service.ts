@@ -44,6 +44,10 @@ export class ResourceService {
             catchError(error => observableThrowError(error)),);
     }
 
+    public selfURI<T extends Resource>(type: { new(): T }, resource: string, id: any): string {
+        return this.getResourceUrl(resource).concat('/', id);
+    }
+
     public getBySelfLink<T extends Resource>(type: { new(): T }, resourceLink: string): Observable<T> {
         const result: T = new type();
 
@@ -85,6 +89,16 @@ export class ResourceService {
         return observable.pipe(map(response => ResourceHelper.instantiateResourceCollection(type, response, result)),
             catchError(error => observableThrowError(error)),);
     }
+
+    public query(resource: string, query: string, options?: HalOptions): Observable<any> {
+        const uri = this.getResourceUrl(resource).concat('/search/', query);
+        const params = ResourceHelper.optionParams(new HttpParams(), options);
+
+        return ResourceHelper.getHttp().get(uri, {headers: ResourceHelper.headers, params: params}).pipe(
+            map(response => response),
+            catchError(error => observableThrowError(error)),);
+    }
+
 
     public getByRelation<T extends Resource>(type: { new(): T }, resourceLink: string): Observable<T> {
         let result: T = new type();
