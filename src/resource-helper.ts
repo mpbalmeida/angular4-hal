@@ -8,6 +8,8 @@ import * as url from 'url';
 
 export class ResourceHelper {
 
+    private static readonly URL_TEMPLATE_VAR_REGEXP = /{[^}]*}/g;
+    private static readonly EMPTY_STRING = '';
     private static _headers: HttpHeaders;
     private static proxy_uri: string;
     private static root_uri: string;
@@ -178,7 +180,13 @@ export class ResourceHelper {
     public static getProxy(url: string): string {
         if (!ResourceHelper.proxy_uri || ResourceHelper.proxy_uri == '')
             return url;
-        return ResourceHelper.addSlash(url.replace(ResourceHelper.root_uri, ResourceHelper.proxy_uri));
+        return ResourceHelper.addSlash(
+            ResourceHelper.removeUrlTemplateVars(url)
+                .replace(ResourceHelper.root_uri, ResourceHelper.proxy_uri));
+    }
+
+    private static removeUrlTemplateVars(url: string) {
+        return url.replace(ResourceHelper.URL_TEMPLATE_VAR_REGEXP, ResourceHelper.EMPTY_STRING);
     }
 
     public static setHttp(http: HttpClient) {
