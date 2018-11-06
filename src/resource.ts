@@ -87,7 +87,7 @@ export abstract class Resource {
     public addRelations<T extends Resource>(relation: string, resources: T[]): Observable<any> {
         if (!isNullOrUndefined(this._links) && !isNullOrUndefined(this._links[relation])) {
             let header = ResourceHelper.headers.append('Content-Type', 'text/uri-list');
-            const uris = resources.map(r => r._links.self.href);
+            let uris = resources.map(r => r._links.self.href).join('\n');
             return ResourceHelper.getHttp().post(ResourceHelper.getProxy(this._links[relation].href), uris, {headers: header});
         } else {
             return observableThrowError('no relation found');
@@ -97,7 +97,7 @@ export abstract class Resource {
     public replaceRelations<T extends Resource>(relation: string, resources: T[]): Observable<any> {
         if (!isNullOrUndefined(this._links) && !isNullOrUndefined(this._links[relation])) {
             let header = ResourceHelper.headers.append('Content-Type', 'text/uri-list');
-            const uris = resources.map(r => r._links.self.href);
+            let uris = resources.map(r => r._links.self.href).join('\n');
             return ResourceHelper.getHttp().put(ResourceHelper.getProxy(this._links[relation].href), uris, {headers: header});
         } else {
             return observableThrowError('no relation found');
