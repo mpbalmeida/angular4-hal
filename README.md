@@ -77,7 +77,9 @@ import {ExternalConfigurationService} from './ExternalConfigurationService'
     BrowserModule,
     AngularHalModule.forRoot()
   ],
-  providers: [],
+  providers: [
+      {provide: 'ExternalConfigurationService', useClass: ExternalConfigurationService},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
@@ -268,7 +270,8 @@ https://angular.io/guide/http#intercepting-all-requests-or-responses
 + get()
 + customQuery()
 + search() in server-side with spring satify findBy* and countBy*
-+ searchSingle
++ searchSingle()
++ query() Allows for returning a value that is not the specific type of the resource usefull for count queries
 + create()
 + update()
 + patch()
@@ -286,8 +289,10 @@ https://angular.io/guide/http#intercepting-all-requests-or-responses
 ### Resource
 + getRelationArray()
 + getRelation()
-+ addRelation()   // add relation
-+ updateRelation() // update relation
++ addRelation()   // add relation to a collection one-to-many
++ addRelations()  // add list of relation to a collection one-to-many
++ updateRelation() // update relation used to override or create a relation for one-to-one
++ replaceRelations() // update relation used to override or create a relation for one-to-many
 + substituteRelation()
 + deleteRelation()    // remove relation
 
