@@ -58,6 +58,10 @@ export class RestService<T extends Resource> {
         return this.resourceService.get(this.type, this.resource, id);
     }
 
+    public selfURI(id: any): string {
+        return this.resourceService.selfURI(this.type, this.resource, id);
+    }
+
     public getBySelfLink(selfLink: string): Observable<T> {
         return this.resourceService.getBySelfLink(this.type, selfLink);
     }
@@ -74,6 +78,10 @@ export class RestService<T extends Resource> {
                     return observableOf(resourceArray.result);
                 }
             }));
+    }
+
+    public query(query: string, options?: HalOptions): Observable<any> {
+        return this.resourceService.query(this.resource, query, options);
     }
 
     public searchSingle(query: string, options?: HalOptions): Observable<T> {

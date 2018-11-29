@@ -45,6 +45,10 @@ export class ResourceService {
             catchError(error => observableThrowError(error)),);
     }
 
+    public selfURI<T extends Resource>(type: { new(): T }, resource: string, id: any): string {
+        return this.getResourceUrl(resource).concat('/', id);
+    }
+
     public getBySelfLink<T extends Resource>(type: { new(): T }, resourceLink: string): Observable<T> {
         const result: T = new type();
 

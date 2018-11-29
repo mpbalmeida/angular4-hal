@@ -34,6 +34,15 @@ export abstract class Resource {
     constructor() {
     }
 
+    // Get self
+    public uri(): string {
+        if (!isNullOrUndefined(this._links) && !isNullOrUndefined(this._links['self'])) {
+            return ResourceHelper.getProxy(this._links['self'].href);
+        } else {
+            return null;
+        }
+    }
+
     // Get collection of related resources
     public getRelationArray<T extends Resource>(type: { new(): T }, relation: string, _embedded?: string, options?: HalOptions, builder?: SubTypeBuilder): Observable<T[]> {
 
