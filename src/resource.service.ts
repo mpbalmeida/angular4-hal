@@ -145,6 +145,15 @@ export class ResourceService {
         }),catchError(error => observableThrowError(error)),);
     }
 
+    public query(resource: string, query: string, options?: HalOptions): Observable<any> {
+        const uri = this.getResourceUrl(resource).concat('/search/', query);
+        const params = ResourceHelper.optionParams(new HttpParams(), options);
+
+        return ResourceHelper.getHttp().get(uri, {headers: ResourceHelper.headers, params: params}).pipe(
+            map(response => response),
+            catchError(error => observableThrowError(error)),);
+    }
+
     public update<T extends Resource>(entity: T) {
         const uri = ResourceHelper.getProxy(entity._links.self.href);
         const payload = ResourceHelper.resolveRelations(entity);
