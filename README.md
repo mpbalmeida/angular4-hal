@@ -9,7 +9,7 @@ This module needs Angular version 4.3+ since it uses the new HttpClientModule in
 
 ## Installation
 ```
-npm i hal-4-angular
+npm i angular-spring-hal
 ```
 ## Configuration
 
@@ -23,7 +23,7 @@ In simple case proxy and root uri's are a simple string.
 
 ```typescript
 import {Injectable} from '@angular/core';
-import {ExternalConfigurationHandlerInterface, ExternalConfiguration} from 'hal-4-angular';
+import {ExternalConfigurationHandlerInterface, ExternalConfiguration} from 'angular-spring-hal';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({
@@ -63,7 +63,7 @@ export class ExternalConfigurationService implements ExternalConfigurationHandle
 ```typescript
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {AngularHalModule} from 'hal-4-angular';
+import {AngularHalModule} from 'angular-spring-hal';
 
 import {AppComponent} from './app.component';
 import {environment} from '../environments/environment';
@@ -77,7 +77,9 @@ import {ExternalConfigurationService} from './ExternalConfigurationService'
     BrowserModule,
     AngularHalModule.forRoot()
   ],
-  providers: [],
+  providers: [
+      {provide: 'ExternalConfigurationService', useClass: ExternalConfigurationService},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
@@ -92,7 +94,7 @@ By inheriting the Resource class we give HAL specific features to our entity
 **Attention**: The name and type of the members of your resource class must exactly match the name and type of the members of the resource entity exposed by your API  
 
 ```typescript
-import {Resource} from 'hal-4-angular';
+import {Resource} from 'angular-spring-hal';
 
 export class Player extends Resource {
     id: number;
@@ -102,7 +104,7 @@ export class Player extends Resource {
 ```
 Since a Team consists of multiple players, we model the one-to-many relationship between the Team resource and the Player resources
 ```typescript
-import {Resource} from 'hal-4-angular';
+import {Resource} from 'angular-spring-hal';
 
 export class Team extends Resource {
     name: string;
@@ -268,7 +270,8 @@ https://angular.io/guide/http#intercepting-all-requests-or-responses
 + get()
 + customQuery()
 + search() in server-side with spring satify findBy* and countBy*
-+ searchSingle
++ searchSingle()
++ query() Allows for returning a value that is not the specific type of the resource usefull for count queries
 + create()
 + update()
 + patch()
@@ -286,8 +289,10 @@ https://angular.io/guide/http#intercepting-all-requests-or-responses
 ### Resource
 + getRelationArray()
 + getRelation()
-+ addRelation()   // add relation
-+ updateRelation() // update relation
++ addRelation()   // add relation to a collection one-to-many
++ addRelations()  // add list of relation to a collection one-to-many
++ updateRelation() // update relation used to override or create a relation for one-to-one
++ replaceRelations() // update relation used to override or create a relation for one-to-many
 + substituteRelation()
 + deleteRelation()    // remove relation
 

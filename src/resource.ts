@@ -84,11 +84,31 @@ export abstract class Resource {
         }
     }
 
+    public addRelations<T extends Resource>(relation: string, resources: T[]): Observable<any> {
+        if (!isNullOrUndefined(this._links) && !isNullOrUndefined(this._links[relation])) {
+            let header = ResourceHelper.headers.append('Content-Type', 'text/uri-list');
+            let uris = resources.map(r => r._links.self.href).join('\n');
+            return ResourceHelper.getHttp().post(ResourceHelper.getProxy(this._links[relation].href), uris, {headers: header});
+        } else {
+            return observableThrowError('no relation found');
+        }
+    }
+
+    public replaceRelations<T extends Resource>(relation: string, resources: T[]): Observable<any> {
+        if (!isNullOrUndefined(this._links) && !isNullOrUndefined(this._links[relation])) {
+            let header = ResourceHelper.headers.append('Content-Type', 'text/uri-list');
+            let uris = resources.map(r => r._links.self.href).join('\n');
+            return ResourceHelper.getHttp().put(ResourceHelper.getProxy(this._links[relation].href), uris, {headers: header});
+        } else {
+            return observableThrowError('no relation found');
+        }
+    }
+
     // Adds the given resource to the bound collection by the relation
     public addRelation<T extends Resource>(relation: string, resource: T): Observable<any> {
         if (!isNullOrUndefined(this._links) && !isNullOrUndefined(this._links[relation])) {
             let header = ResourceHelper.headers.append('Content-Type', 'text/uri-list');
-            return ResourceHelper.getHttp().put(ResourceHelper.getProxy(this._links[relation].href), resource._links.self.href, {headers: header});
+            return ResourceHelper.getHttp().post(ResourceHelper.getProxy(this._links[relation].href), resource._links.self.href, {headers: header});
         } else {
             return observableThrowError('no relation found');
         }

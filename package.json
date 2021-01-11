@@ -1,5 +1,5 @@
 {
-  "name": "hal-4-angular",
+  "name": "@fingerprintsoft/angular-spring-hal",
   "version": "7.1.2",
   "description": "This Angular module offers a HAL/JSON http-client to easily interact with a Spring Data Rest API or any API that implements the Spring Data Rest resource model",
   "author": "Masvis S.r.l.",
@@ -26,20 +26,20 @@
     "Angular"
   ],
   "issues": {
-    "url": "https://github.com/mpbalmeida/hal-4-angular/issues"
+    "url": "https://github.com/fingerprints/angular-spring-hal/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mpbalmeida/hal-4-angular.git"
+    "url": "https://github.com/fingerprints/angular-spring-hal/.git"
   },
   "devDependencies": {
-    "@angular/compiler": "~7.0.0",
-    "@angular/compiler-cli": "~7.0.0",
-    "@angular/platform-server": "~7.0.0",
+    "@angular/compiler": "~9.1.0-next.4",
+    "@angular/compiler-cli": "~9.1.0-next.4",
+    "@angular/platform-server": "~9.1.0-next.4",
     "@types/mocha": "^2.2.43",
     "@types/node": "10.12.9",
     "chai": "^4.1.2",
-    "coveralls": "^3.0.2",
+    "coveralls": "2.13.1",
     "fetch-mock": "5.11.0",
     "growl": "1.10.5",
     "hoek": "4.2.1",
@@ -51,25 +51,23 @@
     "ts-node": "^3.3.0",
     "tslint": "^5.10.0",
     "tslint-ionic-rules": "*",
-    "typescript": "~3.1.6",
-    "coveralls": "2.13.1",
-    "fetch-mock": "5.11.0",
-    "jest": "20.0.4",
-    "hoek": "4.2.1",
-    "growl": "1.10.5"
+    "typescript": "~3.7.5"
   },
   "dependencies": {
+    "@angular/animations": "~9.1.0-next.4",
+    "@angular/cli": "9.1.0-next.3",
+    "@angular/common": "~9.1.0-next.4",
+    "@angular/core": "~9.1.0-next.4",
+    "@angular/platform-browser": "~9.1.0-next.4",
+    "@angular/platform-browser-dynamic": "~9.1.0-next.4",
+    "har-schema": "^1.0.5",
+    "lru-cache": "^5.1.1",
+    "performance-now": "^0.2.0",
     "query-string": "6.1.0",
+    "rxjs": "~6.5.4",
     "url": "0.11.0",
     "util": "0.11.0",
-    "@angular/animations": "~7.0.4",
-    "@angular/cli": "7.0.6",
-    "@angular/common": "~7.0.4",
-    "@angular/core": "~7.0.4",
-    "@angular/platform-browser": "~7.0.4",
-    "@angular/platform-browser-dynamic": "~7.0.4",
-    "rxjs": "~6.3.3",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.10.3"
   },
   "engines": {
     "node": ">=4"
